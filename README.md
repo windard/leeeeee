@@ -2,8 +2,13 @@
 
 LeetCode Folder
 
+### algorithms
 
-## 算法复杂度
+`pip install algorithms`
+
+python 算法库
+
+### 算法复杂度
 
 算法复杂度包括时间复杂度和空间复杂度。
 
