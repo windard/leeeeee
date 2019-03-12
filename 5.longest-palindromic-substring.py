@@ -36,7 +36,25 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
+        # 马拉车算法
+        # 将奇偶两种情况转换为一种情况来处理
+        # Manacher's Algorithm
+        # T(n) = O(n)
+        # 最长子串的长度是半径减1，起始位置是中间位置减去半径再除以2。
+        ls = "$#"
+        for i in s:
+            ls += i
+            ls += "#"
+        ls += "&"
+
+
+    def _longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
         # a little slow
+        # T(n) = O(n * n)
 
         maxGroup = ""
         for i in range(len(s)):
