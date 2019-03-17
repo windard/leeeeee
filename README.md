@@ -35,9 +35,9 @@ O(1) < O(logn) < O(n) < O(n^2)
 - 迭代
 - 递归
 - 分治
-- 动态规划
+- 动态规划 Dynamic Programming
 - 二分
-- 贪心
+- 贪心 Greedy Algorithm
 
 ### LeetCode 注意
 
