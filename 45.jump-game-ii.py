@@ -33,13 +33,56 @@
 # 
 #
 class Solution(object):
-
     def jump(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
+        # 贪心就好好贪心
+        # 每一步都算出最优解
+        # 就是最终的最优解
+        n = 0
+        if len(nums) == 1:
+            return 0
+        step = 1
+        while n + nums[n] < len(nums) - 1:
+            l = n
+            for m in range(n,n+nums[n]+1):
+                if m + nums[m] > l + nums[l]:
+                    l = m
+            step += 1
+            n = l
+        return step
+
+    def ___jump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # 走一步，算一步
+        # 跟紧走的最快的
+        # 跑步跟上新时代
+        # 纯贪心算法，不用回溯和动态规划
+        step = 0
+        if len(nums) == 1:
+            return 0
+        reached = 0
+        max_reached = nums[0]
+        for key, value in enumerate(nums):
+            max_reached = max(max_reached, key + value)
+            if max_reached >= len(nums) - 1:
+                return step + 1
+            if key == reached:
+                step += 1
+                reached = max_reached
+
+    def __jump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         # 再次优化
+        # 分治或者是回溯算法
         dp = [float("INF")] * len(nums)
         dp[-1] = 0
         n = len(nums) - 2
@@ -111,10 +154,10 @@ class Solution(object):
 # if __name__ == "__main__":
     # s = Solution()
     # print s.jump([2,3,1,1,4])
-    # print s.counted
+#     # print s.counted
     # s = Solution()
     # print s.jump([3,4,1,3,6])
-    # print s.counted
+#     # print s.counted
     # s = Solution()
     # print s.jump([9,8,2,2,0,2,2,0,4,1,5,7,9,6,6,0,6,5,0,5])
-    # print s.counted
+#     # print s.counted

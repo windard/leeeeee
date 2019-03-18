@@ -62,6 +62,9 @@ class Solution(object):
         # 在价格跌之前卖
         # 在价格涨之前买
         # 人生如果能先知先觉就好了
+        # 贪婪比动态规划好
+        # 贪婪能取得所有的获利
+        # 动态规划能取得最大的获利
         flag = 0
         last = None
         goal = None
