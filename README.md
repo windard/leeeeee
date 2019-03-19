@@ -43,3 +43,5 @@ O(1) < O(logn) < O(n) < O(n^2)
 
 1. 同样的参数递归可以缓存加速
 2. 不要用全部变量，会有影响
+3. 使用 LeetCode 定义的结构体类会比用自己定义的慢
+4. LeetCode 的 solution 比 Discuss 有更好的解法

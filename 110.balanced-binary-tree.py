@@ -66,6 +66,7 @@ class Solution(object):
         :type root: TreeNode
         :rtype: bool
         """
+        # 其实是回溯算法
         return bool(self.checkDepth(root))
 
     def checkDepth(self, root):
