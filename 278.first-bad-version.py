@@ -38,13 +38,29 @@
 # The isBadVersion API is already defined for you.
 # @param version, an integer
 # @return a bool
-# def isBadVersion(version):
-#     if version >= 1:
-#         return True
-#     else:
-#         return False
+def isBadVersion(version):
+    if version >= 1:
+        return True
+    else:
+        return False
 
 class Solution(object):
+
+    def firstBadVersion(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        # best mid dichotomy
+        last = 0
+        while last <= n:
+            half = (last + n) / 2
+            if isBadVersion(half):
+                n = half - 1
+            else:
+                last = half + 1
+        return last
+
     def _firstBadVersion(self, n, start=0):
         """
         :type n: int
@@ -54,7 +70,7 @@ class Solution(object):
             if isBadVersion(i):
                 return i
 
-    def firstBadVersion(self, n):
+    def __firstBadVersion(self, n):
         """
         :type n: int
         :rtype: int
