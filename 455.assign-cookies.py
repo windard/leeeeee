@@ -62,6 +62,40 @@ class Solution(object):
         """
         g.sort()
         s.sort()
+        i = 0
+        j = 0
+        while i < len(g) and j < len(s):
+            if g[i] <= s[j]:
+                i += 1
+            j += 1
+        return i
+
+    def _findContentChildren(self, g, s):
+        """
+        :type g: List[int]
+        :type s: List[int]
+        :rtype: int
+        """
+        g.sort()
+        s.sort()
+        i = 0
+        j = 0
+        l = 0
+        while i < len(g) and j < len(s):
+            if g[i] <= s[j]:
+                i += 1
+                l += 1
+            j += 1
+        return l
+
+    def _findContentChildren(self, g, s):
+        """
+        :type g: List[int]
+        :type s: List[int]
+        :rtype: int
+        """
+        g.sort()
+        s.sort()
         l = 0
         for i in g:
             while s:
