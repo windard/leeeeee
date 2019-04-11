@@ -67,21 +67,20 @@ class Solution(object):
         :rtype: int
         """
         houses.sort()
-        heaters = list(set(heaters))
         heaters.sort()
 
         max_length = 0
         min_heater = 0
         for i in houses:
             while min_heater < len(heaters) - 1:
-                if abs(heaters[min_heater+1] - i) < abs(heaters[min_heater] - i):
+                if abs(heaters[min_heater+1] - i) <= abs(heaters[min_heater] - i):
                     min_heater += 1
                 else:
                     break
             if abs(heaters[min_heater] - i) > max_length:
                 max_length = abs(heaters[min_heater] - i)
         return max_length
-            
+
 # if __name__ == "__main__":
     # s = Solution()
     # print s.findRadius([1,2,3],[2])
