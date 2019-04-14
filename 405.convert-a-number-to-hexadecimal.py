@@ -58,6 +58,25 @@ class Solution(object):
         :type num: int
         :rtype: str
         """
+        if not num:
+            return "0"
+        hard_code = 4294967295
+        if num < 0:
+            num = abs(num)
+            num = hard_code ^ num
+            num += 1
+        res = ''
+        while num:
+            res = hex_map[num % 16] + res
+            num = num / 16
+        
+        return res.lstrip("0")
+
+    def _toHex(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
         flag = False
         if num < 0:
             flag = True
@@ -92,3 +111,4 @@ class Solution(object):
 #     s = Solution()
 #     print s.toHex(26)
 #     print s.toHex(-1)
+#     print s.toHex(0)
