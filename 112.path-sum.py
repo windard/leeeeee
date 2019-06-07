@@ -41,44 +41,61 @@ class TreeNode(object):
         self.right = None
 
 class Solution(object):
-    def hasPathSum(self, root, sum):
+    def _hasPathSum(self, root, sum):
         """
         :type root: TreeNode
         :type sum: int
         :rtype: bool
         """
         self.result = []
-        self.checkRootSum(root, 0, sum)
+        self._checkRootSum(root, 0, sum)
         return bool(self.result)
 
-    def checkRootSum(self, root, current, total):
+    def _checkRootSum(self, root, current, total):
         if not root:
             return False
         if current + root.val == total and not root.left and not root.right:
             self.result.append(root.val)
             return True
         else:
-            if self.checkRootSum(root.left, current+root.val, total):
+            if self._checkRootSum(root.left, current+root.val, total):
                 self.result.append(root.left.val)
                 return True
-            elif self.checkRootSum(root.right, current+root.val, total):
+            elif self._checkRootSum(root.right, current+root.val, total):
                 self.result.append(root.right.val)
                 return True
 
         return False
 
+    def hasPathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: bool
+        """
+        return self.checkRootSum(root, 0, sum)
+
+    def checkRootSum(self, root, current, total):
+        if not root:
+            return False
+        if current + root.val == total and not root.left and not root.right:
+            return True
+        
+        return self.checkRootSum(root.left, current+root.val, total) \
+                or self.checkRootSum(root.right, current+root.val, total)
+
 if __name__ == "__main__":
     s = Solution()
-    # root = TreeNode(5)
-    # root.left = TreeNode(4)
-    # root.right = TreeNode(8)
-    # root.left.left = TreeNode(11)
-    # root.left.left.left = TreeNode(7)
-    # root.left.left.right = TreeNode(2)
-    # root.right.left = TreeNode(13)
-    # root.right.right = TreeNode(4)
-    # root.right.right.right = TreeNode(1)
+    root = TreeNode(5)
+    root.left = TreeNode(4)
+    root.right = TreeNode(8)
+    root.left.left = TreeNode(11)
+    root.left.left.left = TreeNode(7)
+    root.left.left.right = TreeNode(2)
+    root.right.left = TreeNode(13)
+    root.right.right = TreeNode(4)
+    root.right.right.right = TreeNode(1)
 
-    root = TreeNode(-2)
-    root.right = TreeNode(-3)
-    print s.hasPathSum(root, -5)
+    # root = TreeNode(-2)
+    # root.right = TreeNode(-3)
+    # print s.hasPathSum(root, 22)
