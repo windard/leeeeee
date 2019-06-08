@@ -32,8 +32,9 @@ O(1) < O(logn) < O(n) < O(n^2)
 
 ### 算法思想
 
-- 迭代
-- 递归
+- 迭代 iteration
+- 遍历 traversal
+- 递归 recursion
 - 分治
 - 动态规划 Dynamic Programming
 - 二分
@@ -45,6 +46,9 @@ O(1) < O(logn) < O(n) < O(n^2)
 2. 不要用全部变量，会有影响
 3. 使用 LeetCode 定义的结构体类会比用自己定义的慢
 4. LeetCode 的 solution 比 Discuss 有更好的解法
+5. list 是有序的，set 是无序的
+6. list 的 pop 和 remove 都是非常耗时的
+7. xrange 比 range 快，在 python2 中
 
 ### 排列组合
 
@@ -56,3 +60,10 @@ O(1) < O(logn) < O(n) < O(n^2)
     > C(4/9) = `9*8*7*6/4*3*2*1 = 126`
 - 可重复的全组合 H(n/m) = C(n/m+n-1) = (m+n-1)!/n!(m-1)!
     > H(4/9) = `12!/4!8! = 12*11*10*9/4*3*2*1 = 495`
+
+### divmod
+
+divisor = (m + n) / 10
+left    = (m + n) % 10
+
+divisor, left = divmod(m+n, 10)
