@@ -83,7 +83,7 @@ class Solution(object):
             return True
         return self.isSonOfRoot(root.left, son) or self.isSonOfRoot(root.right, son)
 
-    def lowestCommonAncestor(self, root, p, q):
+    def __lowestCommonAncestor(self, root, p, q):
         # copy one
         # 二叉搜索树的特性
         # 1. 父节点的值在左右子节点中间
@@ -91,17 +91,12 @@ class Solution(object):
         while (root.val - p.val) * (root.val - q.val) > 0: root = (root.left, root.right)[p.val > root.val]
         return root
 
-    def ____lowestCommonAncestor(self, root, p, q):
+    def lowestCommonAncestor(self, root, p, q):
         # 二叉搜索树的特性
         # 父节点的值在两节点的值中间
-        # Total Wrong
-        if not root:
-            return 
-        lr = self.lowestCommonAncestor(root.left, p, q)
-        if lr:
-            return lr
-        rr = self.lowestCommonAncestor(root.right, p, q)
-        if rr:
-            return rr
-        if p.val < root.val < q.val or q.val < root.val < p.val:
+        if p.val > root.val and q.val > root.val:
+            return self.lowestCommonAncestor(root.right, p, q)
+        elif p.val < root.val and q.val < root.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        else:
             return root
