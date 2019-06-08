@@ -43,6 +43,8 @@
 # 
 # 
 #
+from collections import defaultdict
+
 class Solution(object):
     def _containsNearbyDuplicate(self, nums, k):
         """
@@ -112,7 +114,7 @@ class Solution(object):
 
         return False
 
-    def containsNearbyDuplicate(self, nums, k):
+    def ____containsNearbyDuplicate(self, nums, k):
         """
         :type nums: List[int]
         :type k: int
@@ -135,6 +137,26 @@ class Solution(object):
                 return True
             d.add(nums[j])
             i += 1
+        return False
+
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        if len(set(nums)) == len(nums):
+            return False
+        
+        d = defaultdict(list)
+        for key, value in enumerate(nums):
+            d[value].append(key)
+
+        for key, value in d.items():
+            if len(value) > 1:
+                for i in range(len(value)-1):
+                    if value[i+1] - value[i] <= k:
+                        return True
         return False
 
 # if __name__ == "__main__":
