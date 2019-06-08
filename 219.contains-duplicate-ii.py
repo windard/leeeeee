@@ -68,13 +68,14 @@ class Solution(object):
         :type k: int
         :rtype: bool
         """
+        # Accept
         d = {}
         for i in range(0, min(k+1, len(nums))):
             new = d.get(nums[i], 0) + 1
             if new > 1:
                 return True
             d[nums[i]] = new
-        
+
         if k + 1 >= len(nums):
             return False
 
@@ -84,10 +85,10 @@ class Solution(object):
             if new > 1:
                 return True
             d[nums[i]] = new
-        
+
         return False
 
-    def containsNearbyDuplicate(self, nums, k):
+    def ___containsNearbyDuplicate(self, nums, k):
         """
         :type nums: List[int]
         :type k: int
@@ -101,7 +102,7 @@ class Solution(object):
 
         if k + 1 >= len(nums):
             return False
-    
+
         for i in range(k+1, len(nums)):
             d.remove(nums[i-k-1])
             d.append(nums[i])
@@ -109,6 +110,31 @@ class Solution(object):
             if len(set(d)) != len(d):
                 return True
 
+        return False
+
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        if k >= len(nums)-1:
+            if len(nums) == len(set(nums)):
+                return False
+            return True
+
+        d = set(nums[:k+1])
+        if len(d) != len(nums[:k+1]):
+            return True
+
+        i = 0
+        while i < len(nums) - k - 1:
+            j = i + k + 1
+            d.remove(nums[i])
+            if nums[j] in d:
+                return True
+            d.add(nums[j])
+            i += 1
         return False
 
 # if __name__ == "__main__":
