@@ -33,7 +33,7 @@
 import itertools
 
 class Solution(object):
-    def twoSum(self, nums, target):
+    def _twoSum(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
@@ -43,3 +43,15 @@ class Solution(object):
             if nums[i] + nums[j] == target:
                 return [i, j]
 
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        tm = {}
+        for key, num in enumerate(nums):
+            if target - num in tm:
+                return [tm[target-num], key]
+            else:
+                tm[num] = key
