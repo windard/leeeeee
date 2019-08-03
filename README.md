@@ -49,6 +49,7 @@ O(1) < O(logn) < O(n) < O(n^2)
 5. list 是有序的，set 是无序的
 6. list 的 pop 和 remove 都是非常耗时的
 7. xrange 比 range 快，在 python2 中
+8. HashMap is good, 即 dict，查找元素的时间复杂度可以认为是 O(1)
 
 ### 排列组合
 
@@ -67,3 +68,83 @@ divisor = (m + n) / 10
 left    = (m + n) % 10
 
 divisor, left = divmod(m+n, 10)
+
+### 神奇的操作
+
+#### 乘法不用乘法
+
+题目描述：求1+2+3+…+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
+
+```
+def f(n):
+    if n == 0:
+        return n
+    else:
+        return f(n-1) + n
+
+```
+
+但还是用到了 if else，如果这都不用，只能换其他语言了。
+
+```
+	public Integer f(Integer n){
+		Integer t = n;
+		Boolean b = n != 0 && (t += f(n-1)) != 0;
+		return t;
+	}
+```
+
+#### 加法不用加法
+
+题目描述：写一个函数，求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号。
+
+已知
+
+```
+a + b = a ^ b + (a & b) << 1。
+```
+
+59 = 111011
+33 = 100001
+
+92 = 59 + 33 = 011010 + 1000010 = 26 + 66 = 92
+
+释义：
+a ^ b 表示 a + b , 不计算进位的结果
+a & b 表示 a + b , 需要进位的结果，然后左移进位
+
+```
+def f(a, b):
+    return a ^ b + ((a & b) << 1)
+
+```
+
+### 乘法不用循环
+
+题目描述：实现两个整数的相乘，不能使用乘法运算符和循环
+
+不用循环，那就递归
+
+```
+def mul(a, b):
+    if b == 0:
+        return 0
+    return a + mul(a, b - 1)
+
+
+def multi(a, b):
+    tem = mul(a, abs(b))
+    return -tem if b < 0 else tem
+
+```
+
+但是这样不能计算小数的乘法
+
+或者用除法  
+
+```
+def mul(a, b):
+    if b != 0:
+        return a / (1.0 / b)
+    return 0
+```
