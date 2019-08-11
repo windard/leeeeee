@@ -148,3 +148,27 @@ def mul(a, b):
         return a / (1.0 / b)
     return 0
 ```
+
+### BST
+
+二叉搜索树 Binary Search Tree 
+
+特性
+1. 当前节点大于等于左子节点及其所有节点
+2. 当前节点小于右子节点及其所有节点
+3. 中序遍历结果为有序数组
+
+#### 遍历
+
+- preorder traversal  先序遍历，中左右
+- inorder traversal   中序遍历，左中右
+- postorder traversal 后序遍历，左右中
+
+### 排列组合的各种骚操作
+
+1. 递归
+2. 迭代
+3. 回溯
+4. 剪枝
+5. DFS
+6. BFS
