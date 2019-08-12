@@ -96,8 +96,7 @@ class Solution(object):
             nodes.append(level)
         return head
 
-
-    def connect(self, root):
+    def __connect(self, root):
         """
         :type root: Node
         :rtype: Node
@@ -116,3 +115,24 @@ class Solution(object):
             last = last.right
         self.connectLast(head.left, last)
         self.connectLast(head.right, head.left)
+
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        self.leftAndRight(root)
+        return root
+
+    def leftAndRight(self, root):
+        if not root or not root.left:
+            return
+        root.left.next = root.right
+        self.leftAndRight(root.left)
+        self.leftAndRight(root.right)
+        left = root.left
+        right = root.right
+        while left.right:
+            left.right.next = right.left
+            left = left.right
+            right = right.left
