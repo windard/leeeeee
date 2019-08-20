@@ -1,0 +1,48 @@
+--
+-- @lc app=leetcode id=197 lang=mysql
+--
+-- [197] Rising Temperature
+--
+-- https://leetcode.com/problems/rising-temperature/description/
+--
+-- database
+-- Easy (35.52%)
+-- Likes:    267
+-- Dislikes: 111
+-- Total Accepted:    84.4K
+-- Total Submissions: 237.5K
+-- Testcase Example:  '{"headers": {"Weather": ["Id", "RecordDate", ' +
+--  '"Temperature"]}, "rows": {"Weather": [[1, "2015-01-01", ' +
+--  '10], [2, "2015-01-02", 25], [3, "2015-01-03", 20], [4, ' +
+--  '"2015-01-04", 30]]}}'
+--
+-- Given a Weather table, write a SQL query to find all dates' Ids with higher
+-- temperature compared to its previous (yesterday's) dates.
+-- 
+-- 
+-- +---------+------------------+------------------+
+-- | Id(INT) | RecordDate(DATE) | Temperature(INT) |
+-- +---------+------------------+------------------+
+-- |       1 |       2015-01-01 |               10 |
+-- |       2 |       2015-01-02 |               25 |
+-- |       3 |       2015-01-03 |               20 |
+-- |       4 |       2015-01-04 |               30 |
+-- +---------+------------------+------------------+
+-- 
+-- 
+-- For example, return the following Ids for the above Weather table:
+-- 
+-- 
+-- +----+
+-- | Id |
+-- +----+
+-- |  2 |
+-- |  4 |
+-- +----+
+-- 
+-- 
+--
+# Write your MySQL query statement below
+
+
+select a Id from (select Weather.Id a, Weather.Temperature t1, w.Temperature t2 from Weather left join Weather as w on Weather.RecordDate = DATE_ADD(w.RecordDate, INTERVAL 1 day )) as e where t1 > t2
