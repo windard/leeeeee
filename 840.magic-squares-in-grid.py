@@ -65,7 +65,7 @@ class Solution(object):
             return 0
         for row in range(len(grid)-2):
             for column in range(len(grid[0])-2):
-                if self.checkSquare(row, column, grid):
+                if self.check(row, column, grid):
                     count += 1
         return count
 
@@ -89,6 +89,33 @@ class Solution(object):
             return False
         return sorted(result) == range(1,10)
 
+    def check(self, row, column, grid):
+            """
+            must be 1-9
+            """
+            count = 15
+            scope = set(range(1, 10))
+            # 中心只能是5
+            if grid[row+1][column+1] != 5:
+                return False
+            if grid[row][column] == grid[row+1][column+1] == grid[row+2][column+2]:
+                return False
+            for i in range(3):
+                if grid[row+i][column] not in scope:
+                    return False
+                if grid[row+i][column+1] not in scope:
+                    return False
+                if grid[row+i][column+2] not in scope:
+                    return False
+                if grid[row+i][column] + grid[row+i][column+1] + grid[row+i][column+2] != count:
+                    return False
+                if grid[row][column+i] + grid[row+1][column+i] + grid[row+2][column+i] != count:
+                    return False
+            if grid[row][column] + grid[row+1][column+1] + grid[row+2][column+2] != count:
+                return False
+            if grid[row+2][column] + grid[row+1][column+1] + grid[row][column+2] != count:
+                return False
+            return True
 
 # if __name__ == '__main__':
 #     s = Solution()
