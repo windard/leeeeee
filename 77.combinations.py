@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=77 lang=python
 #
@@ -33,12 +34,51 @@
 # 
 #
 
-from itertools import combinations
+
 class Solution(object):
-    def combine(self, n, k):
+    def _combine(self, n, k):
         """
         :type n: int
         :type k: int
         :rtype: List[List[int]]
         """
+        from itertools import combinations
         return combinations(range(1, n+1), k)
+
+    def combine(self, n, k):
+        start = 1
+        n += 1
+        result = []
+
+        def inner_combine(s, e, p):
+            if e == 0:
+                result.append(p)
+                return
+
+            for i in range(s, n):
+                inner_combine(i+1, e-1, p+[i])
+
+        inner_combine(start, k, [])
+        return result
+
+    def combinations_with_replacement(self, n, k):
+        start = 1
+        n += 1
+        result = []
+
+        def inner_combine(s, e, p):
+            if e == 0:
+                result.append(p)
+                return
+
+            for i in range(s, n):
+                inner_combine(i, e-1, p+[i])
+
+        inner_combine(start, k, [])
+        return result
+
+
+# if __name__ == '__main__':
+#     s = Solution()
+#     print s.combine(4, 2)
+#     print s.combinations_with_replacement(4, 2)

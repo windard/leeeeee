@@ -36,6 +36,8 @@
 # ]
 # 
 #
+
+
 class Solution(object):
     def _subsets(self, nums):
         """
@@ -104,7 +106,7 @@ class Solution(object):
                 result.append(t+[n])
         return result
 
-    def subsets(self, nums):
+    def _____subsets(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
@@ -118,6 +120,26 @@ class Solution(object):
         for t in temp:
             result.append(t+[nums[index]])
         return self.helper(nums, index+1, result)
+
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+
+        start = 0
+        e = len(nums)
+        result = []
+
+        def backtrack(s, p):
+            result.append(p)
+
+            for i in range(s, e):
+                backtrack(i+1, p+[nums[i]])
+
+        backtrack(start, [])
+        return result
+
 
 # if __name__ == "__main__":
 #     s = Solution()

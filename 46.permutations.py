@@ -48,7 +48,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        return self.reroll_permute(nums, len(nums))
+        self.result = []
+        self.recall_permute(nums, len(nums), [])
+        return self.result
+
+    def recall_permute(self, nums, length, path):
+        if length == 0:
+            self.result.append(path)
+        for i in range(len(nums)):
+            self.recall_permute(nums[:i]+nums[i+1:], length-1, path+[nums[i]])
 
     def reroll_permute(self, nums, length):
         output = []
