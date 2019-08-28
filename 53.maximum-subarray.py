@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=53 lang=python
 #
@@ -28,8 +29,10 @@
 # the divide and conquer approach, which is more subtle.
 # 
 #
+
+
 class Solution(object):
-    def maxSubArray(self, nums):
+    def _maxSubArray(self, nums):
         """
         :type nums: List[int]
         :rtype: int
@@ -45,3 +48,26 @@ class Solution(object):
             maxn = maxn if maxn > last else last
         return maxn
 
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # greedy algorithm
+        if not nums:
+            return
+
+        count = 0
+        max_count = -float("inf")
+        for n in nums:
+            if n + count < n:
+                count = n
+            else:
+                count += n
+            max_count = max(max_count, count)
+        return max_count
+
+
+# if __name__ == '__main__':
+#     s = Solution()
+#     print s.maxSubArray([-2,1,-3,4,-1,2,1,-5,4])
