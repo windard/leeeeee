@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=26 lang=python
 #
@@ -59,8 +60,10 @@
 # }
 #
 #
+
+
 class Solution(object):
-    def removeDuplicates(self, nums):
+    def _removeDuplicates(self, nums):
         """
         :type nums: List[int]
         :rtype: int
@@ -73,4 +76,59 @@ class Solution(object):
                 star += 1
                 nums[star] = nums[i]
         return star + 1
+
+    def __removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # 快慢指针 +
+        # 定位指针
+        # Total Wrong
+        # I don't know how to solve
+        if not nums:
+            return 0
+        if len(nums) < 2:
+            return 1
+        lower = index = 0
+        fast = 1
+        while fast < len(nums):
+            if nums[fast] != nums[lower]:
+                nums[index] = nums[lower]
+                index += 1
+                lower = fast
+                fast += 1
+            else:
+                fast += 1
+        if fast - lower == 1:
+            nums[index] = nums[lower]
+            index += 1
+        return index
+
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # 快慢指针
+        if len(nums) < 2:
+            return len(nums)
+        lower = 0
+        fast = 1
+        while fast < len(nums):
+            if nums[fast] != nums[lower]:
+                lower += 1
+                nums[lower] = nums[fast]
+            fast += 1
+        return lower + 1
+
+
+# if __name__ == '__main__':
+#     s = Solution()
+#     print s.removeDuplicates([0,0])
+#     print s.removeDuplicates([0,1])
+#     print s.removeDuplicates([0,1,1])
+#     print s.removeDuplicates([0,0,1,1])
+#     print s.removeDuplicates([0,0,1,1,1])
+#     print s.removeDuplicates([1,2,3,4,5])
 
