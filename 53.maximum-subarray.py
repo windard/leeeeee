@@ -48,7 +48,7 @@ class Solution(object):
             maxn = maxn if maxn > last else last
         return maxn
 
-    def maxSubArray(self, nums):
+    def __maxSubArray(self, nums):
         """
         :type nums: List[int]
         :rtype: int
@@ -67,7 +67,21 @@ class Solution(object):
             max_count = max(max_count, count)
         return max_count
 
+    def maxSubArray(self, A):
+        max_sum = -float("inf")
+        this_sum = 0
+        for x in A:
+            this_sum += x
+            if this_sum > max_sum:
+                max_sum = this_sum
+            if this_sum < 0:
+                this_sum = 0
+        return max_sum
+
 
 # if __name__ == '__main__':
 #     s = Solution()
+#     print s.maxSubArray([-2,1])
+#     print s.maxSubArray([7, -5, 3, 5])
+#     print s.maxSubArray([-2, 11, -4, 13, -5, -2])
 #     print s.maxSubArray([-2,1,-3,4,-1,2,1,-5,4])
