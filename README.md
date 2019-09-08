@@ -32,11 +32,12 @@ O(1) < O(logn) < O(n) < O(n^2)
 
 ### 算法思想
 
+- 暴力 Brute Force (容易 Time Limit)
 - 迭代 iteration
 - 遍历 traversal
 - 递归 recursion
 - 分治
-- 动态规划 Dynamic Programming
+- 动态规划 Dynamic Programming (注意 Memory Error)
 - 二分
 - 贪心 Greedy Algorithm
 
@@ -55,11 +56,11 @@ O(1) < O(logn) < O(n) < O(n^2)
 
 - 所有排序 m**n                                  
     > `9*9*9*9 = 6561`
-- 全排列 A(n/m) = m!/(m-n)!             
+- 全排列 permutations A(n/m) = m!/(m-n)!             
     > A(4/9) = `9*8*7*6 = 3024`
-- 全组合 C(n/m) = m!/(m-n)!n!           
+- 全组合 combinations C(n/m) = m!/(m-n)!n!           
     > C(4/9) = `9*8*7*6/4*3*2*1 = 126`
-- 可重复的全组合 H(n/m) = C(n/m+n-1) = (m+n-1)!/n!(m-1)!
+- 可重复的全组合 combinations_with_replacement H(n/m) = C(n/m+n-1) = (m+n-1)!/n!(m-1)!
     > H(4/9) = `12!/4!8! = 12*11*10*9/4*3*2*1 = 495`
 
 ### divmod
@@ -172,3 +173,16 @@ def mul(a, b):
 4. 剪枝
 5. DFS
 6. BFS
+
+### longest 与 maximum 系列
+
+套路，全都是套路
+
+- substring: 连续子字符串
+- subsequence: 不用连续的子序列
+- subarray: 连续的子数组
+
+- longest palindromic substring 最长回文字符串
+- longest common subsequence 最长公共序列
+- longest increasing subsequence 最长增长序列
+- maximum subarray 最大数组
