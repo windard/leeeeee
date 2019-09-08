@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=167 lang=python
 #
@@ -35,6 +36,8 @@
 # Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
 # 
 #
+
+
 class Solution(object):
     def _twoSum(self, numbers, target):
         """
@@ -90,7 +93,7 @@ class Solution(object):
                     return key+1, k+key+2
             data[key] = 1
 
-    def twoSum(self, numbers, target):
+    def ____twoSum(self, numbers, target):
         """
         :type numbers: List[int]
         :type target: int
@@ -105,8 +108,26 @@ class Solution(object):
 
             data[value] = key
 
+    def twoSum(self, numbers, target):
+        """
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        left = 0
+        right = len(numbers) - 1
+        while left < right:
+            if numbers[left] + numbers[right] == target:
+                return left+1, right+1
+            elif numbers[left] + numbers[right] > target:
+                right -= 1
+            else:
+                left += 1
+        return -1, -1
+
+
 # if __name__ == "__main__":
 #     s = Solution()
 #     print s.twoSum([2, 3, 4], 6)
 #     print s.twoSum([-1, 0], -1)
-#     print s.twoSum([0, 0, 3 , 4], 0)
+#     print s.twoSum([0, 0, 3, 4], 0)
