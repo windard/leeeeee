@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=34 lang=python
 #
@@ -33,6 +34,8 @@
 # Output: [-1,-1]
 # 
 #
+
+
 class Solution(object):
     def _searchRange(self, nums, target):
         """
@@ -40,6 +43,7 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
+        # O(n)
         start = end = -1
 
         for index, value in enumerate(nums):
@@ -84,6 +88,55 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
+        left = right = -1
+        # 先查左边
+        start = 0
+        end = len(nums) - 1
+        while start <= end:
+            mid = (start + end) / 2
+            if nums[mid] == target:
+                if mid and nums[mid-1] == target:
+                    end = mid - 1
+                else:
+                    left = mid
+                    break
+            elif nums[mid] > target:
+                end = mid - 1
+            else:
+                start = mid + 1
+
+        # 再查右边
+        start = 0
+        end = len(nums) - 1
+        while start <= end:
+            mid = (start + end) / 2
+            if nums[mid] == target:
+                if mid < len(nums) - 1 and nums[mid+1] == target:
+                    start = mid + 1
+                else:
+                    right = mid
+                    break
+            elif nums[mid] < target:
+                start = mid + 1
+            else:
+                end = mid - 1
+
+        return left, right
+
+
+    def binary_search(self, nums, target):
+        # 传统写法，二分查找
+        start = 0
+        end = len(nums) - 1
+        while start <= end:
+            mid = (start + end) / 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] > target:
+                end = mid - 1
+            else:
+                start = mid + 1
+        return -1
 
     def midSearch(self, nums, target, flag=True):
         left = 0
@@ -98,28 +151,28 @@ class Solution(object):
                 return mid
         return -1
 
+
 # if __name__ == "__main__":
 #     s = Solution()
-    # print s.searchRange([2, 2], 3)
-    # print s.searchRange([1], 1)
-    # print s.searchRange([1,1], 1)
-    # print s.searchRange([5,7,7,8,8,10], 6)
-    # print s.searchRange([5,7,7,8,8,10], 10)
-    # print s.searchRange([5,7,7,8,8,10,10], 10)
-    # print s.searchRange([5,7,7,8,10], 8)
-    # print s.searchRange([8,8,10], 8)
-    # print s.searchRange([8,10], 8)
-
-    # print s.midSearch([2, 2], 3)
-    # print s.midSearch([],1)
-    # print s.midSearch([1,2,3,4,5], 3)
-    # print s.midSearch([1,2,3,4,5], 4)
-    # print s.midSearch([1,2,3,5], 3)
-    # print s.midSearch([1,2,4,5], 4)
-    # print s.midSearch([1,2,3,5], 4)
-
-    # print s.midSearch([1,2,3,3,3,4,5], 3)
-    # print s.midSearch([1,2,3,3,3,4,5], 3, False)
-    # print s.midSearch([1,2,3,4,4,5], 4)
-    # print s.midSearch([1,2,3,4,4,5], 4, False)
-
+#     print s.searchRange([2, 2], 3)
+#     print s.searchRange([1], 1)
+#     print s.searchRange([1,1], 1)
+#     print s.searchRange([5,7,7,8,8,10], 6)
+#     print s.searchRange([5,7,7,8,8,10], 10)
+#     print s.searchRange([5,7,7,8,8,10,10], 10)
+#     print s.searchRange([5,7,7,8,10], 8)
+#     print s.searchRange([8,8,10], 8)
+#     print s.searchRange([8,10], 8)
+#
+#     print s.midSearch([2, 2], 3)
+#     print s.midSearch([],1)
+#     print s.midSearch([1,2,3,4,5], 3)
+#     print s.midSearch([1,2,3,4,5], 4)
+#     print s.midSearch([1,2,3,5], 3)
+#     print s.midSearch([1,2,4,5], 4)
+#     print s.midSearch([1,2,3,5], 4)
+#
+#     print s.midSearch([1,2,3,3,3,4,5], 3)
+#     print s.midSearch([1,2,3,3,3,4,5], 3, False)
+#     print s.midSearch([1,2,3,4,4,5], 4)
+#     print s.midSearch([1,2,3,4,4,5], 4, False)
