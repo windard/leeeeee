@@ -1,5 +1,6 @@
 # coding=utf-8
 
+
 class Solution(object):
     def distanceBetweenBusStops(self, distance, start, destination):
         """
