@@ -78,7 +78,7 @@ class Solution(object):
                 ns = new_s
         return True
 
-    def canFinish(self, numCourses, prerequisites):
+    def __canFinish(self, numCourses, prerequisites):
         """
         :type numCourses: int
         :type prerequisites: List[List[int]]
@@ -122,6 +122,68 @@ class Solution(object):
                         return False
             has_checked[target] = True
             return True
+
+    def ___canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        # One Complex Solution
+        # 核心是删除没有前置节点的点
+        income = [0] * numCourses
+        outcome = [[] for _ in range(numCourses)]
+
+        for inc, out in prerequisites:
+            income[inc] += 1
+            outcome[out].append(inc)
+
+        isolated = []
+        for index, inc in enumerate(income):
+            if not inc:
+                isolated.append(index)
+
+        while isolated:
+            point = isolated.pop()
+            numCourses -= 1
+            for inc in outcome[point]:
+                income[inc] -= 1
+                if not income[inc]:
+                    isolated.append(inc)
+
+        return not numCourses
+
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        # Elegant DFS
+        # 回溯
+
+        def dfs(n):
+            if points[n] == 1:
+                return True
+            elif points[n] == -1:
+                return False
+            points[n] = -1
+            for ns in sources[n]:
+                if not dfs(ns):
+                    return False
+            points[n] = 1
+            return True
+
+        points = [0] * numCourses
+        sources = [[] for _ in range(numCourses)]
+
+        for inc, out in prerequisites:
+            sources[out].append(inc)
+
+        for nc in range(numCourses):
+            if not dfs(nc):
+                return False
+        return True
 
 
 # if __name__ == '__main__':
