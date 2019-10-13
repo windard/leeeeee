@@ -74,7 +74,8 @@ class Solution(object):
             else:
                 end = mid
 
-        gap = end
+        # gap = end
+        gap = self.gap(nums, target)
 
         if nums[0] <= target <= nums[gap]:
             start = 0
@@ -93,10 +94,32 @@ class Solution(object):
                 end = mid - 1
         return -1
 
+    def gap(self, nums, v):
+        if len(nums) < 3:
+            return 0
+        start = 0
+        end = len(nums) - 1
+        while start <= end:
+            mid = (start + end) / 2
+            if nums[mid] >= nums[start]:
+                if mid+1 >= len(nums) or nums[mid-1] <= nums[mid] >= nums[mid+1]:
+                    return mid
+                start = mid + 1
+            elif nums[mid] < nums[start]:
+                if mid-1 < 0 or nums[mid-1] >= nums[mid] <= nums[mid+1]:
+                    return mid - 1
+                end = mid - 1
+
 
 # if __name__ == '__main__':
 #     s = Solution()
+#     print s.search([1], 0)
 #     print s.search([], 1)
+#     print s.search([1,3],0)
+#     print s.search([1,3,5], 0)
 #     print s.search([4,5,6,7,0,1,2,3], 0)
 #     print s.search([4,5,6,7,0,1,2,3], 3)
 #     print s.search([5,6,7,0,1,2,4], 3)
+#     # print s.gap([4,5,6,7,0,1,2,3], 0)
+#     # print s.gap([4,5,6,7,0,1,2,3], 3)
+#     # print s.gap([5,6,7,0,1,2,4], 3)
