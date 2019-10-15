@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=20 lang=python
 #
@@ -62,8 +63,9 @@
 
 import Queue
 
+
 class Solution(object):
-    def isValid(self, s):
+    def _isValid(self, s):
         """
         :type s: str
         :rtype: bool
@@ -96,3 +98,21 @@ class Solution(object):
         else:
             return False
 
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        f_match = {'(':')', '{':'}', '[':']'}
+        match   = {')':'(', '}':'{', ']':'['}
+        stack = []
+        for i in s:
+            if i in match.values():
+                stack.append(i)
+            else:
+                if not stack:
+                    return False
+                if stack[-1] != match[i]:
+                    return False
+                stack.pop()
+        return not stack

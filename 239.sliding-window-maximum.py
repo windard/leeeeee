@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=239 lang=python
 #
@@ -40,6 +41,8 @@
 # Follow up:
 # Could you solve it in linear time?
 #
+
+
 class Solution(object):
     def _maxSlidingWindow(self, nums, k):
         """

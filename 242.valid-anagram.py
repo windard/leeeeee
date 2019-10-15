@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=242 lang=python
 #
@@ -38,8 +39,10 @@
 # solution to such case?
 # 
 #
+
+
 class Solution(object):
-    def isAnagram(self, s, t):
+    def _isAnagram(self, s, t):
         """
         :type s: str
         :type t: str
@@ -54,3 +57,15 @@ class Solution(object):
             dt[i] = dt.get(i, 0) + 1
         return ds == dt
 
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        characters = [0] * 26
+        for i in s:
+            characters[ord(i)-ord('a')] += 1
+        for i in t:
+            characters[ord(i)-ord('a')] -= 1
+        return all(map(lambda x: x == 0, characters))
