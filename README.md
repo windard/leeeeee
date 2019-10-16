@@ -36,10 +36,11 @@ O(1) < O(logn) < O(n) < O(n^2)
 - 迭代 iteration
 - 遍历 traversal
 - 递归 recursion
-- 分治
+- 分治 Divide-and-Conquer
 - 动态规划 Dynamic Programming (注意 Memory Error)
-- 二分
+- 二分查找 Binary-Search
 - 贪心 Greedy Algorithm
+- 回溯 backtrack
 
 ### LeetCode 注意
 

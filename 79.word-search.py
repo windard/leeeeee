@@ -38,6 +38,8 @@
 #
 
 # @lc code=start
+
+
 class Solution(object):
     def exist(self, board, word):
         """
@@ -81,8 +83,8 @@ class Solution(object):
 # @lc code=end
 
 
-if __name__ == '__main__':
-    s = Solution()
-    print s.exist([['a','a']], 'aaa')
-    print s.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCEDF")
-    print s.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")
+# if __name__ == '__main__':
+#     s = Solution()
+#     print s.exist([['a','a']], 'aaa')
+#     print s.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCEDF")
+#     print s.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")

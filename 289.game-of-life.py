@@ -135,6 +135,6 @@ class Solution(object):
 # @lc code=end
 
 
-if __name__ == '__main__':
-    s = Solution()
-    print s.gameOfLife([[1,1],[1,0]])
+# if __name__ == '__main__':
+#     s = Solution()
+#     print s.gameOfLife([[1,1],[1,0]])
