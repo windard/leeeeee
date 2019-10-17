@@ -65,7 +65,7 @@ class Solution(object):
                     d[i] = d[i-1]+1
         return d[-1]
 
-    def numDecodings(self, s):
+    def __numDecodings(self, s):
         """
         :type s: str
         :rtype: int
@@ -90,6 +90,36 @@ class Solution(object):
             if not tmp:
                 return 0
         return d[-1]
+
+    def numDecodings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        # 递归的性能太差
+        # Time Limit
+        if not s:
+            return 0
+        if s.startswith('0'):
+            return 0
+        # 用回溯
+        global result
+        result = 0
+
+        def backtrack(prefix, value):
+            if prefix.startswith('0'):
+                return
+            global result
+            if 0 < int(prefix) < 27:
+                if not value:
+                    result += 1
+                else:
+                    for i in range(1, min(3, len(value)+1)):
+                        backtrack(value[:i], value[i:])
+
+        for i in range(1, min(3, len(s)+1)):
+            backtrack(s[:i], s[i:])
+        return result
 
 
 # if __name__ == '__main__':
