@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=121 lang=python
 #
@@ -39,6 +40,8 @@
 # 
 # 
 #
+
+
 class Solution(object):
     def maxProfit(self, prices):
         """
