@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=169 lang=python
 #
@@ -34,11 +35,37 @@
 
 from collections import Counter
 
+
 class Solution(object):
-    def majorityElement(self, nums):
+    def _majorityElement(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
         return Counter(nums).most_common()[0][0]
 
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # Boyer-Moore
+        # 和众数相等加一
+        # 和众数不等减一
+        # 为零的时候再取新值
+        count = 0
+        majority = 0
+        for num in nums:
+            if not count:
+                majority = num
+                count += 1
+            elif num == majority:
+                count += 1
+            else:
+                count -= 1
+        return majority
+
+
+# if __name__ == '__main__':
+#     s = Solution()
+#     print s.majorityElement([3,3,4])
