@@ -57,7 +57,7 @@ class Solution(object):
             dt[i] = dt.get(i, 0) + 1
         return ds == dt
 
-    def isAnagram(self, s, t):
+    def __isAnagram(self, s, t):
         """
         :type s: str
         :type t: str
@@ -69,3 +69,12 @@ class Solution(object):
         for i in t:
             characters[ord(i)-ord('a')] -= 1
         return all(map(lambda x: x == 0, characters))
+
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        from collections import Counter
+        return Counter(s) == Counter(t)
