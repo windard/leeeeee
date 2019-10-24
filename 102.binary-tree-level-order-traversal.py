@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=102 lang=python
 #
@@ -37,16 +38,18 @@
 # 
 #
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
 
-import Queue
+
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution(object):
 
-    def levelOrder(self, root):
+    def ___levelOrder(self, root):
         """
         :type root: TreeNode
         :rtype: List[List[int]]
@@ -78,6 +81,7 @@ class Solution(object):
         """
         # 迭代
         # 队列先进先出
+        import Queue
         q = Queue.Queue()
         res = []
         if root:
@@ -114,6 +118,50 @@ class Solution(object):
             if root.right:
                 res = self.mining(root.right, index+1, res)
         return res
+
+    def ____levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        # 层次遍历的两种写法
+        # 队列
+        # 是错误的 [3,9,20,15,7]
+        # 正确答案 [[3],[9,20],[15,7]]
+        queue = [root]
+        result = []
+        while queue:
+            root = queue.pop(0)
+            result.append(root.val)
+            if root.left:
+                queue.append(root.left)
+            if root.right:
+                queue.append(root.right)
+        return result
+
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root:
+            return []
+        stack = [[root]]
+        result = []
+        while stack:
+            level = stack.pop()
+            current = []
+            next_level = []
+            for root in level:
+                current.append(root.val)
+                if root.left:
+                    next_level.append(root.left)
+                if root.right:
+                    next_level.append(root.right)
+            result.append(current)
+            if next_level:
+                stack.append(next_level)
+        return result
 
 # if __name__ == "__main__":
 #     t = TreeNode(3)
