@@ -80,7 +80,7 @@ class Solution(object):
             create.next = root
         return index.next
 
-    def deleteDuplicates(self, head):
+    def __deleteDuplicates(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
@@ -109,6 +109,36 @@ class Solution(object):
                 root = root.next
                 head = head.next
         return index.next
+
+    def deleteDuplicates(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if not head or not head.next:
+            return head
+        shard = genes = ListNode(0)
+        prev = head
+        flag = False
+        while head.next:
+            if prev.val == head.next.val:
+                flag = True
+                head = head.next
+            else:
+                if flag:
+                    prev = head.next
+                    head = head.next
+                else:
+                    shard.next = prev
+                    shard = shard.next
+                    prev = head.next
+                    head = head.next
+                flag = False
+        if not flag:
+            shard.next = prev
+            shard = shard.next
+        shard.next = None
+        return genes.next
 
 
 # if __name__ == '__main__':
