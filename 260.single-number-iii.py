@@ -51,7 +51,7 @@ class Solution(object):
                 result[1] ^= num
         return result
 
-    def singleNumber(self, nums):
+    def __singleNumber(self, nums):
         """
         :type nums: List[int]
         :rtype: List[int]
@@ -63,3 +63,25 @@ class Solution(object):
             else:
                 data.remove(num)
         return data
+
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        mix = reduce(lambda x, y: x ^ y, nums)
+        diff = 1
+        while not diff & mix:
+            diff <<= 1
+        result = [0, 0]
+        for num in nums:
+            if num & diff:
+                result[0] ^= num
+            else:
+                result[1] ^= num
+        return result
+
+
+if __name__ == '__main__':
+    s = Solution()
+    print s.singleNumber([1,2,1,3,2,5])
