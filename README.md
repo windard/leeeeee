@@ -175,6 +175,12 @@ def mul(a, b):
 5. DFS
 6. BFS
 
+### 快速开平方
+
+- 二分
+- 牛顿迭代
+- 神奇的数字
+
 ### longest 与 maximum 系列
 
 套路，全都是套路
@@ -186,4 +192,7 @@ def mul(a, b):
 - longest palindromic substring 最长回文字符串
 - longest common subsequence 最长公共序列
 - longest increasing subsequence 最长增长序列
-- maximum subarray 最大数组
+- maximum subarray 最大子连续和
+- maximum product subarray 最大子连续积
+- longest common subsequence 最长重复子序列
+- maximum length of repeated subarray 最长重复子数组

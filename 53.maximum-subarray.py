@@ -32,6 +32,18 @@
 
 
 class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        max_count = -float("inf")
+        count = 0
+        for n in nums:
+            count = max(n, count + n)
+            max_count = max(count, max_count)
+        return max_count
+
     def _maxSubArray(self, nums):
         """
         :type nums: List[int]
