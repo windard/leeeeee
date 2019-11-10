@@ -64,8 +64,32 @@ def combinations_with_replacement(n, k):
     return result
 
 
+def show_case(n):
+    result = []
+    for i in range(n):
+        current = []
+        if not result:
+            current.append('0')
+            current.append('1')
+        else:
+            for r in result:
+                current.append(r+'0')
+                current.append(r+'1')
+        result = current
+
+    answer = []
+    for e in result:
+        temp = ''
+        for i in range(n):
+            if e[i] == '1':
+                temp += str(i+1)
+        answer.append(temp)
+    return answer
+
+
 if __name__ == "__main__":
     print permutations(range(5), 3)
     print permutations('abcde', 2)
     print combine(4, 2)
     print combinations_with_replacement(4, 2)
+    print show_case(9)

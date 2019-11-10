@@ -40,7 +40,7 @@ O(1) < O(logn) < O(n) < O(n^2)
 - 动态规划 Dynamic Programming (注意 Memory Error)
 - 二分查找 Binary-Search (数组必须有序)
 - 贪心 Greedy Algorithm
-- 回溯 backtrack
+- 回溯 backtrack (最大递归深度)
 
 ### LeetCode 注意
 
@@ -63,6 +63,8 @@ O(1) < O(logn) < O(n) < O(n^2)
     > C(4/9) = `9*8*7*6/4*3*2*1 = 126`
 - 可重复的全组合 combinations_with_replacement H(n/m) = C(n/m+n-1) = (m+n-1)!/n!(m-1)!
     > H(4/9) = `12!/4!8! = 12*11*10*9/4*3*2*1 = 495`
+- 不同的展示组合 比如 [1,2,3,4,5,6,7,8,9,12,123,1234,12345,123456...]
+    > M(9) = 2^9 = 2**9 = 512
 
 ### divmod
 
