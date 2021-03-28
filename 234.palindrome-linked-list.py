@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=234 lang=python
 #
@@ -31,6 +32,9 @@
 # Could you do it in O(n) time and O(1) space?
 # 
 #
+import copy
+
+
 # Definition for singly-linked list.
 class ListNode(object):
     def __init__(self, x):
@@ -39,9 +43,6 @@ class ListNode(object):
 
     def __str__(self):
         return "<ListNode %s -> %s>" % (self.val, self.next)
-
-
-import copy
 
 
 class Solution(object):
@@ -130,9 +131,8 @@ class Solution(object):
             head = head.next
             current.next = prev
             prev = current
-            current = ListNode(head.val)  if head else None
+            current = ListNode(head.val) if head else None
         return prev
-
 
     def _reverse(self, head):
         prev = None
