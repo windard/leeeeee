@@ -192,9 +192,18 @@ def mul(a, b):
 - subarray: 连续的子数组
 
 - longest palindromic substring 最长回文字符串
+<<<<<<< HEAD
 - longest common subsequence 最长公共序列
+=======
+- @1044 longest duplicate substring 最长重复子串，(在同一个子串中的重复部分
+- longest common substring 最长公共子列，(在两个子串中的相同部分
+>>>>>>> b424730 (feat: some maximum subarray)
 - longest increasing subsequence 最长增长序列
-- maximum subarray 最大子连续和
+- @53 maximum subarray 最大子连续和,(@1186 最大字连续和，可以删一个)
 - maximum product subarray 最大子连续积
+<<<<<<< HEAD
 - longest common subsequence 最长重复子序列
+=======
+- @1143 longest common subsequence 最长重复子序列, 最长公共序列
+>>>>>>> b424730 (feat: some maximum subarray)
 - maximum length of repeated subarray 最长重复子数组

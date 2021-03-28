@@ -79,7 +79,7 @@ class Solution(object):
             max_count = max(max_count, count)
         return max_count
 
-    def maxSubArray(self, A):
+    def ___maxSubArray(self, A):
         max_sum = -float("inf")
         this_sum = 0
         for x in A:

@@ -17,10 +17,10 @@ class Solution(object):
             dp[i][i] = (arr[i], arr[i])
             max_count = max(max_count, dp[i][i][0])
             for j in range(i):
-                min_index = dp[i-1][j][1]
-                count = dp[i-1][j][0]
-                if i-1 != j:
-                    count = dp[i-1][j][0] + min_index
+                min_index = dp[i - 1][j][1]
+                count = dp[i - 1][j][0]
+                if i - 1 != j:
+                    count = dp[i - 1][j][0] + min_index
                 if arr[i] < min_index:
                     min_index = arr[i]
                 dp[i][j] = (count + arr[i] - min_index, min_index)
@@ -44,7 +44,7 @@ class Solution(object):
             for j in range(i):
                 min_index = dp[j][1]
                 count = dp[j][0]
-                if i-1 != j:
+                if i - 1 != j:
                     count = dp[j][0] + min_index
                 if arr[i] < min_index:
                     min_index = arr[i]
@@ -91,17 +91,17 @@ class Solution(object):
         # unbelievable
         l = r = ans = -float('inf')
         for i in range(len(arr)):
-            l = max(l+arr[i], r)
-            r = max(r+arr[i], arr[i])
+            l = max(l + arr[i], r)
+            r = max(r + arr[i], arr[i])
             ans = max(ans, max(l, r))
         return ans
 
 
 if __name__ == '__main__':
     s = Solution()
-    print s.maximumSum([-8,7,-12,-1,0,11,-2,-3,4,-13,2,3,-6])  # 17
-    print s.maximumSum([11,-10,-11,8,7,-6,9,4,11,6,5,0])  # 50
-    print s.maximumSum([1,-4,-5,-2,5,0,-1,2])             # 7
-    print s.maximumSum([1,-2,0,3])                        # 4
-    print s.maximumSum([1,-2,-2,3])                       # 3
-    print s.maximumSum([-1,-1,-1,-1])                     # -1
+    print(s.maximumSum([-8, 7, -12, -1, 0, 11, -2, -3, 4, -13, 2, 3, -6]))  # 17
+    print(s.maximumSum([11, -10, -11, 8, 7, -6, 9, 4, 11, 6, 5, 0]))  # 50
+    print(s.maximumSum([1, -4, -5, -2, 5, 0, -1, 2]))  # 7
+    print(s.maximumSum([1, -2, 0, 3]))  # 4
+    print(s.maximumSum([1, -2, 0, 3]))  # 3
+    print(s.maximumSum([-1, -1, -1, -1]))  # -1
