@@ -60,7 +60,7 @@
 # 
 #
 class Solution(object):
-    def longestCommonSubsequence(self, text1, text2):
+    def longestCommonSubsequence1(self, text1, text2):
         """
         :type text1: str
         :type text2: str
@@ -88,11 +88,11 @@ class Solution(object):
             #     dp[i][j] = max(dp[i][j], dp[i-1][j])
             #     if text1[i] == text2[j]:
             #         dp[i][j] = 1
-        for line in dp:
-            for point in line:
-                print(point),
-                # print ("*" if point else "_"),
-            print("")
+        # for line in dp:
+        #     for point in line:
+        #         print(point),
+        #         # print ("*" if point else "_"),
+        #     print("")
         return dp[-1][-1]
 
     def solution(self, text1, text2):
@@ -104,11 +104,33 @@ class Solution(object):
                     dp[i][j] = dp[i - 1][j - 1] + 1
                 else:
                     dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
-        for line in dp:
-            for point in line:
-                print (point),
-            print("")
+        # for line in dp:
+        #     for point in line:
+        #         print (point),
+        #     print("")
         return dp[len(text1)][len(text2)]
+
+    def longestCommonSubsequence(self, text1, text2):
+        """
+        :type text1: str
+        :type text2: str
+        :rtype: int
+        """
+        # 完了，再次做错了，上来就错
+        # 重点在于数组长度要加一，但是对比的是减一的位置
+        m = len(text1)+1
+        n = len(text2)+1
+        dp = [[0]*n for _ in range(m)]
+        max_result = 0
+        for i in range(1, m):
+            for j in range(1, n):
+                if text1[i-1] == text2[j-1]:
+                    dp[i][j] = dp[i-1][j-1] + 1
+                else:
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+                max_result = max(max_result, dp[i][j])
+        return max_result
+
 # 错误示例
 # 1. 不能用 dp[i][j] = dp[i-1][j-1],因为会循环取到上一行的最后一个，作为新一行的第一个开始
 # 2. 遇到相同的之后可以加一，但是下次再相同，不能又加一
@@ -133,8 +155,9 @@ if __name__ == '__main__':
     # print(s.longestCommonSubsequence("abc", "def"))
     # print(s.longestCommonSubsequence("abc", "abc"))
     # print(s.longestCommonSubsequence("abcde", "ace"))
-    print(s.longestCommonSubsequence("banfgganadbf", "asdanfga"))
-    print(s.longestCommonSubsequence("pmjghexybyrgzczy", "hafcdqbgncrcbihkd"))
+    print(s.longestCommonSubsequence("banfgganadbf", "asdanfga"))                   # 5
+    print(s.longestCommonSubsequence("pmjghexybyrgzczy", "hafcdqbgncrcbihkd"))      # 4
     #                                     h   b r  c      h     b   rc
-    print(s.solution("banfgganadbf", "asdanfga"))
-    print(s.solution("pmjghexybyrgzczy", "hafcdqbgncrcbihkd"))
+    print(s.longestCommonSubsequence("banfgganadbf", "asdanfga"))                   # 5
+    print(s.longestCommonSubsequence("pmjghexybyrgzczy", "hafcdqbgncrcbihkd"))      # 4
+    print(s.longestCommonSubsequence("oxcpqrsvwf", "shmtulqrypy"))                  # 2
