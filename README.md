@@ -55,16 +55,16 @@ O(1) < O(logn) < O(n) < O(n^2)
 
 ### 排列组合
 
-- 所有排序 m**n                                  
+- 所有排序 `m**n`                                  
     > `9*9*9*9 = 6561`
-- 全排列 permutations A(n/m) = m!/(m-n)!             
+- 全排列 `permutations A(n/m) = m!/(m-n)!`             
     > A(4/9) = `9*8*7*6 = 3024`
-- 全组合 combinations C(n/m) = m!/(m-n)!n!           
+- 全组合 `combinations C(n/m) = m!/(m-n)!n!`           
     > C(4/9) = `9*8*7*6/4*3*2*1 = 126`
-- 可重复的全组合 combinations_with_replacement H(n/m) = C(n/m+n-1) = (m+n-1)!/n!(m-1)!
+- 可重复的全组合 `combinations_with_replacement H(n/m) = C(n/m+n-1) = (m+n-1)!/n!(m-1)!`
     > H(4/9) = `12!/4!8! = 12*11*10*9/4*3*2*1 = 495`
-- 不同的展示组合 比如 [1,2,3,4,5,6,7,8,9,12,123,1234,12345,123456...]
-    > M(9) = 2^9 = 2**9 = 512
+- 不同的展示组合 比如 `[1,2,3,4,5,6,7,8,9,12,123,1234,12345,123456...]`
+    > M(9) = `2^9 = 2**9 = 512`
 
 ### divmod
 
@@ -100,7 +100,7 @@ def f(n):
 
 #### 加法不用加法
 
-题目描述：写一个函数，求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号。
+题目描述：写一个函数，求两个整数之和，要求在函数体内不得使用`+`、`-`、`*`、`/`四则运算符号。
 
 已知
 
@@ -192,18 +192,10 @@ def mul(a, b):
 - subarray: 连续的子数组
 
 - longest palindromic substring 最长回文字符串
-<<<<<<< HEAD
-- longest common subsequence 最长公共序列
-=======
 - @1044 longest duplicate substring 最长重复子串，(在同一个子串中的重复部分
 - longest common substring 最长公共子列，(在两个子串中的相同部分
->>>>>>> b424730 (feat: some maximum subarray)
 - longest increasing subsequence 最长增长序列
-- @53 maximum subarray 最大子连续和,(@1186 最大字连续和，可以删一个)
+- @53 maximum subarray 最大子连续和,(@1186 删一个元素后的最大子连续和)
 - maximum product subarray 最大子连续积
-<<<<<<< HEAD
-- longest common subsequence 最长重复子序列
-=======
 - @1143 longest common subsequence 最长重复子序列, 最长公共序列
->>>>>>> b424730 (feat: some maximum subarray)
 - maximum length of repeated subarray 最长重复子数组
