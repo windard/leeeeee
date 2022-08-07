@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # @lc app=leetcode id=11 lang=python
 #
@@ -38,6 +39,7 @@
 
 import itertools
 
+
 class Solution(object):
     def _maxArea(self, height):
         """
@@ -63,7 +65,7 @@ class Solution(object):
         while left < right:
             ans = max(ans, (right - left) * min(height[left], height[right]))
 
-            if (height[left] < height[right]):
+            if height[left] < height[right]:
                 left += 1
             else:
                 right -= 1

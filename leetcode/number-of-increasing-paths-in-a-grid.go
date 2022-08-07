@@ -4,7 +4,61 @@ import "fmt"
 
 const modNum = 1e9 + 7
 
+var dirs = [][]int{{0, 1}, {0, -1}, {1, 0}, {-1, 0}}
+
 func countPaths(grid [][]int) int {
+    // 今天给别人面试，真的受教了。
+    if len(grid) == 0 {
+        return 0
+    }
+    m := len(grid)
+    if len(grid[0]) == 0 {
+        return 0
+    }
+    n := len(grid[0])
+    matrix := make([][]int, m)
+    for i := 0; i < m; i++ {
+        matrix[i] = make([]int, n)
+        for j := 0; j < n; j++ {
+            matrix[i][j] = 1
+        }
+    }
+    var total int
+
+    for i := 0; i < m; i++ {
+        for j := 0; j < n; j++ {
+            total += deepSearch(i, j, grid, matrix) % modNum
+        }
+    }
+
+    return total % modNum
+}
+
+func deepSearch(i, j int, grid, matrix [][]int) int {
+    if matrix[i][j] > 1 {
+        return matrix[i][j]
+    }
+
+    if len(grid) == 0 {
+        return 0
+    }
+    m := len(grid)
+    if len(grid[0]) == 0 {
+        return 0
+    }
+    n := len(grid[0])
+    var ii, jj int
+    for _, dir := range dirs {
+        ii = dir[0] + i
+        jj = dir[1] + j
+        if ii >= 0 && jj >= 0 && ii < m && jj < n && grid[ii][jj] > grid[i][j] {
+            matrix[i][j] += deepSearch(ii, jj, grid, matrix) % modNum
+        }
+    }
+    return matrix[i][j]
+}
+
+func countPaths4(grid [][]int) int {
     // 还是需要一个快速寻找法
     // 那就用 DP 吧
     // 每个点记录下自己能够 touch 到的数量
